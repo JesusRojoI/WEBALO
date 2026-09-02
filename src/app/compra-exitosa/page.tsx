@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'next/navigation';
 
-const CompraExitosaPage = () => {
+// Componente que usa useSearchParams
+const CompraExitosaContent = () => {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const [orderDetails, setOrderDetails] = useState<any>(null);
 
   useEffect(() => {
-    // Recuperar detalles de la orden desde sessionStorage
     const savedOrder = sessionStorage.getItem('lastOrder');
     if (savedOrder) {
       try {
@@ -53,28 +53,28 @@ const CompraExitosaPage = () => {
             {orderDetails && (
               <div className="bg-gray-50 rounded-xl p-6 mb-8">
                 <h2 className="text-lg font-bold text-gray-900 mb-4 text-center">
-                  {t('success.orderNumber')}: {orderDetails.transactionId}
+                  {t('success.transactionId')}: {orderDetails.transactionId}
                 </h2>
                 
                 <div className="space-y-3">
                   {orderDetails.productos?.map((product: any, index: number) => (
-  <div key={index} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-0">
-    <div>
-      <p className="font-medium text-gray-900">
-        {product.nameKey ? t(product.nameKey) : product.nombre}
-      </p>
-      {product.projectNumber && (
-        <p className="text-xs text-gray-500">
-          {t('personalized.projectNumber')}: {product.projectNumber}
-        </p>
-      )}
-      <p className="text-sm text-gray-500">× {product.cantidad}</p>
-    </div>
-    <span className="font-medium">
-  ${(product.precio * product.cantidad).toFixed(2)} MXN
-</span>
-  </div>
-))}
+                    <div key={index} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-0">
+                      <div>
+                        <p className="font-medium text-gray-900">
+                          {product.nameKey ? t(product.nameKey) : product.nombre}
+                        </p>
+                        {product.projectNumber && (
+                          <p className="text-xs text-gray-500">
+                            {t('personalized.projectNumber')}: {product.projectNumber}
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-500">× {product.cantidad}</p>
+                      </div>
+                      <span className="font-medium">
+                        ${(product.precio * product.cantidad).toFixed(2)} MXN
+                      </span>
+                    </div>
+                  ))}
                 </div>
                 
                 <div className="mt-4 pt-4 border-t border-gray-200 space-y-2">
@@ -124,6 +124,22 @@ const CompraExitosaPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Componente principal envuelto en Suspense
+const CompraExitosaPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando...</p>
+        </div>
+      </div>
+    }>
+      <CompraExitosaContent />
+    </Suspense>
   );
 };
 
