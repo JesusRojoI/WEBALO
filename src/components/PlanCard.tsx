@@ -60,9 +60,11 @@ const PlanCard: React.FC<PlanCardProps> = ({
       <div className="p-6">
         <div className="mb-4">
           <span className="text-3xl font-bold gradient-text">
-            ${price.toFixed(2)}
+            ${price.toFixed(2)} MXN
           </span>
-          <span className="text-gray-500 text-sm ml-2">+ IVA</span>
+          <span className="text-gray-500 text-sm ml-2">
+            + {t('cart.iva')}
+          </span>
         </div>
         
         <p className="text-gray-600 text-sm leading-relaxed mb-6">

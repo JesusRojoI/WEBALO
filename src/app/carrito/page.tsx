@@ -131,8 +131,8 @@ const CarritoPage = () => {
                     </div>
                     
                     <div className="text-gray-900 font-medium">
-                      ${item.price.toFixed(2)}
-                    </div>
+  ${item.price.toFixed(2)} MXN
+</div>
                     
                     <div className="flex items-center justify-center space-x-2">
                       <button
@@ -151,8 +151,8 @@ const CarritoPage = () => {
                     </div>
                     
                     <div className="text-right font-bold text-primary">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </div>
+  ${(item.price * item.quantity).toFixed(2)} MXN
+</div>
                   </div>
                 ))}
               </div>
@@ -166,19 +166,19 @@ const CarritoPage = () => {
               
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t('cart.subtotal')}</span>
-                  <span className="font-medium">${getSubtotal().toFixed(2)} MXN</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">{t('cart.iva')}</span>
-                  <span className="font-medium">${getIVA().toFixed(2)} MXN</span>
-                </div>
-                <div className="border-t border-gray-200 pt-4 flex justify-between">
-                  <span className="font-bold text-gray-900">{t('cart.total')}</span>
-                  <span className="font-bold text-primary text-xl">
-                    ${getTotal().toFixed(2)} MXN
-                  </span>
-                </div>
+  <span className="text-gray-600">{t('cart.subtotal')}</span>
+  <span className="font-medium">${getSubtotal().toFixed(2)} MXN</span>
+</div>
+<div className="flex justify-between">
+  <span className="text-gray-600">{t('cart.iva')}</span>
+  <span className="font-medium">${getIVA().toFixed(2)} MXN</span>
+</div>
+<div className="border-t border-gray-200 pt-4 flex justify-between">
+  <span className="font-bold text-gray-900">{t('cart.total')}</span>
+  <span className="font-bold text-primary text-xl">
+    ${getTotal().toFixed(2)} MXN
+  </span>
+</div>
               </div>
               
               <Link

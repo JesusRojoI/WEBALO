@@ -24,12 +24,10 @@ const PersonalizadoPage = () => {
   const validate = () => {
     const newErrors: Record<string, string> = {};
     
-    // Validar número de proyecto
     if (!formData.projectNumber.trim()) {
       newErrors.projectNumber = t('personalized.projectNumberRequired');
     }
     
-    // Validar email
     if (!formData.email.trim()) {
       newErrors.email = t('personalized.emailRequired');
     } else {
@@ -39,14 +37,12 @@ const PersonalizadoPage = () => {
       }
     }
     
-    // Validar teléfono
     if (!formData.phone.trim()) {
       newErrors.phone = t('personalized.phoneRequired');
     } else if (!/^\d{10}$/.test(formData.phone)) {
       newErrors.phone = t('personalized.phoneInvalid');
     }
     
-    // Validar monto
     if (!formData.amount.trim()) {
       newErrors.amount = t('personalized.amountRequired');
     } else {
@@ -74,7 +70,6 @@ const PersonalizadoPage = () => {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
     
-    // Limpiar error del campo cuando el usuario escribe
     if (errors[name]) {
       setErrors(prev => {
         const newErrors = { ...prev };
@@ -92,20 +87,20 @@ const PersonalizadoPage = () => {
     }
     
     const amount = parseFloat(formData.amount);
-   const customItem = {
-  id: `custom-${Date.now()}-${formData.projectNumber}`,
-  name: 'Plan Personalizado',
-  nameKey: 'custom.cta', // Clave de traducción
-  price: amount,
-  image: '/images/plan5.jpg',
-  isCustom: true,
-  customDetails: {
-    projectNumber: formData.projectNumber,
-    email: formData.email,
-    phone: formData.phone,
-    amount: amount,
-  },
-};
+    const customItem = {
+      id: `custom-${Date.now()}-${formData.projectNumber}`,
+      name: 'Plan Personalizado',
+      nameKey: 'custom.cta',
+      price: amount,
+      image: '/images/plan5.jpg',
+      isCustom: true,
+      customDetails: {
+        projectNumber: formData.projectNumber,
+        email: formData.email,
+        phone: formData.phone,
+        amount: amount,
+      },
+    };
     
     addItem(customItem);
     setShowSuccess(true);

@@ -71,7 +71,7 @@ const ContactoPage = () => {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">{t('contact.emailLabel')}</p>
-                  <p className="text-gray-600">administracion@lumetra.mx</p>
+                  <p className="text-gray-600">info@webalo.com.mx</p>
                 </div>
               </div>
             </div>
